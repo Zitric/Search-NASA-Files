@@ -3,7 +3,15 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check-types": "tsc",
+    "lint": "eslint --ignore-path .gitignore .",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "format": "yarn prettier --write",
+    "check-format": "yarn prettier --list-different",
+    "validate": "tsc && yarn lint && yarn check-format",
+    "clear": "rm -rf node_modules yarn.lock && yarn install && yarn dev",
+    "clear-cache": "rm -rf node_modules yarn.lock && yarn cache clean --force && yarn install && yarn dev"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.5",
@@ -14,12 +22,21 @@
     "framer-motion": "^4.0.3",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.1.0",
     "@types/node": "^14.6.0",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.3",
+    "prettier": "^2.5.1",
     "typescript": "4.3.2"
   }
 }
