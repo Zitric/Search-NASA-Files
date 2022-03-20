@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { Box, ScaleFade } from '@chakra-ui/react'
 
 import { Link } from '@/components/link'
-import { Image } from '@/components/Image'
+import { Image } from '@/components/image'
 
 import audioIcon from './audio.svg'
 import videoIcon from './video.svg'
@@ -11,11 +11,11 @@ import videoIcon from './video.svg'
 const cardWidth = 200
 
 type MasonryLayoutProps = {
-  collection: { items?: { data: any[]; links: any[] }[] }
+  collection: { items: [{ data: []; links: [] }] }
 }
 
 export const MasonryLayout = ({
-  collection = {},
+  collection = { items: [{ data: [], links: [] }] },
 }: MasonryLayoutProps): ReactElement => {
   const { items = [] } = collection
 

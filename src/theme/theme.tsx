@@ -21,7 +21,7 @@ const styles = {
   }),
 }
 
-const theme = extendTheme({
+export const theme = extendTheme({
   initialColorMode: 'dark',
   useSystemColorMode: true,
   styles,
@@ -32,5 +32,3 @@ const theme = extendTheme({
   fonts,
   breakpoints,
 })
-
-export default theme

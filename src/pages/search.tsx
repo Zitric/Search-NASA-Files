@@ -3,10 +3,10 @@ import { Spinner, Heading } from '@chakra-ui/react'
 import { useState, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 
-import { DarkModeSwitch } from '@/components/DarkModeSwitch'
+import { ThemeModeSwitch } from '@/components/theme-mode-switch'
 import { Header } from '@/components/header'
-import { SearchInput } from '@/components/SearchInput'
-import { MasonryLayout } from '@/components/MasonryLayout'
+import { SearchInput } from '@/components/search-input'
+import { MasonryLayout } from '@/components/masonry-layout'
 import { useSearch } from '@/hooks/useSearch'
 
 const SearchPage = () => {
@@ -22,9 +22,6 @@ const SearchPage = () => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void =>
     setQuery(event.target.value)
-
-  console.log('collection', collection)
-  console.log('isError', isError)
 
   const headerProps = {
     query,
@@ -56,7 +53,7 @@ const SearchPage = () => {
             <MasonryLayout collection={collection} />
           ))
         )}
-        <DarkModeSwitch />
+        <ThemeModeSwitch />
       </Main>
     </>
   )
@@ -68,6 +65,7 @@ const Main = styled('section')`
   align-items: center;
   justify-content: flex-start;
   text-align: center;
+  margin: 0 3rem;
 `
 
 export default SearchPage

@@ -1,12 +1,12 @@
 import Head from 'next/head'
-import { Button, Heading } from '@chakra-ui/react'
+import { Button, Heading, Spinner } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import styled from '@emotion/styled'
 
-import { DarkModeSwitch } from '@/components/DarkModeSwitch'
+import { ThemeModeSwitch } from '@/components/theme-mode-switch'
 import { Header } from '@/components/header'
-import { Image } from '@/components/Image'
+import { Image } from '@/components/image'
 import { useFileDetails } from '@/hooks/useFileDetails'
 
 const FileDetailsPage = () => {
@@ -31,12 +31,14 @@ const FileDetailsPage = () => {
         Back
       </Button>
 
-      <Header title={title || 'File'}>
+      <Header title={title || 'File details'}>
         <DescriptionWrapper>{description}</DescriptionWrapper>
       </Header>
       <Main>
         {isError ? (
           <Heading as='h2'>Something is going wrong</Heading>
+        ) : !collection ? (
+          <Spinner thickness='4px' color='blue.500' size='xl' />
         ) : (
           collection && (
             <>
@@ -58,7 +60,7 @@ const FileDetailsPage = () => {
             </>
           )
         )}
-        <DarkModeSwitch />
+        <ThemeModeSwitch />
       </Main>
     </>
   )
@@ -78,7 +80,7 @@ const VideoWrapper = styled('div')`
 `
 
 const DescriptionWrapper = styled('div')`
-  margin: 2rem;
+  margin: 2rem 2rem 3rem;
 `
 
 export default FileDetailsPage

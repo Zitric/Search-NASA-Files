@@ -16,8 +16,8 @@ type LinkProps = {
 }
 
 export const Link = ({
-  children,
-  href,
+  href = { pathname: '' },
+  children = null,
   ...restProps
 }: LinkProps): ReactElement => (
   <NextLink href={href} passHref>

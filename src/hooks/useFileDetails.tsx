@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 
-import { BASE_URL } from '../constants'
-import { fetcher } from '../helpers/fetcher'
+import { BASE_URL } from '@/helpers/constants'
+import { fetcher } from '@/helpers/fetcher'
 
 type UseFileDetailsProps = {
   id: string | string[]

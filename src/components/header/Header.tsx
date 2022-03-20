@@ -7,7 +7,10 @@ type HeaderProps = {
   children?: ReactNode
 }
 
-export const Header = ({ title, children }: HeaderProps): ReactElement => {
+export const Header = ({
+  title = '',
+  children = null,
+}: HeaderProps): ReactElement => {
   return (
     <Wrapper>
       <Heading
@@ -29,5 +32,5 @@ const Wrapper = styled('header')`
   align-items: center;
   max-width: 800px;
   text-align: center;
-  margin: 8rem auto 0 auto;
+  margin: 7rem auto 0 auto;
 `

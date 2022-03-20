@@ -32,6 +32,7 @@ export const SearchInput = ({
     size: 'lg',
     colorScheme: 'green',
   }
+
   return (
     <Wrapper>
       <InputGroup>

@@ -8,11 +8,11 @@ type ImageProps = {
 }
 
 export const Image = ({
-  src,
-  width,
+  src = '',
+  width = 200,
   ...restProps
 }: ImageProps): ReactElement => {
-  const [ratio, setRatio] = useState(16 / 9) // default to 16:9
+  const [ratio, setRatio] = useState(16 / 9)
 
   return (
     <StyledImage
