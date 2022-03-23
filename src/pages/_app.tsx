@@ -1,13 +1,17 @@
 import { ChakraProvider } from '@chakra-ui/react'
+import { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
 
 import { theme } from '@/theme/theme'
-import { AppProps } from 'next/app'
+import { store } from '../store/store'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider resetCSS theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </Provider>
   )
 }
 
