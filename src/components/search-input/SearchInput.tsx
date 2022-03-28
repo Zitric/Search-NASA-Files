@@ -10,7 +10,7 @@ import {
 import { SearchIcon } from '@chakra-ui/icons'
 
 type SearchInputProps = {
-  query: string
+  term: string
   handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void
   handleSubmit?: () => void
   isImagesCheck: boolean
@@ -20,7 +20,7 @@ type SearchInputProps = {
 }
 
 export const SearchInput = ({
-  query = '',
+  term = '',
   handleInputChange,
   isImagesCheck,
   setIsImagesCheck,
@@ -36,11 +36,7 @@ export const SearchInput = ({
   return (
     <Wrapper>
       <InputGroup>
-        <Input
-          value={query}
-          placeholder='Search'
-          onChange={handleInputChange}
-        />
+        <Input value={term} placeholder='Search' onChange={handleInputChange} />
         <InputRightElement>
           <SearchIcon />
         </InputRightElement>

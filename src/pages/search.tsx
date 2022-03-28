@@ -7,24 +7,24 @@ import { ThemeModeSwitch } from '@/components/theme-mode-switch'
 import { Header } from '@/components/header'
 import { SearchInput } from '@/components/search-input'
 import { MasonryLayout } from '@/components/masonry-layout'
-import { useSearch } from '@/hooks/useSearch'
+import { useFetchFilesQuery } from '../features/search-slice'
 
 const SearchPage = () => {
-  const [query, setQuery] = useState('')
+  const [term, setTerm] = useState('')
   const [isImagesCheck, setIsImagesCheck] = useState(true)
   const [isAudioCheck, setIsAudioCheck] = useState(true)
 
-  const { collection = null, isError = false } = useSearch({
-    query,
-    isImagesCheck,
-    isAudioCheck,
-  })
+  const {
+    data: { collection = null } = {},
+    error: isError = false,
+    isLoading,
+  } = useFetchFilesQuery({ term, isImagesCheck, isAudioCheck })
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void =>
-    setQuery(event.target.value)
+    setTerm(event.target.value)
 
   const headerProps = {
-    query,
+    term,
     handleInputChange,
     isImagesCheck,
     setIsImagesCheck,
@@ -43,11 +43,11 @@ const SearchPage = () => {
       <Main>
         {isError ? (
           <Heading as='h2'>Something is going wrong</Heading>
-        ) : !collection && query.length !== 0 ? (
+        ) : isLoading ? (
           <Spinner thickness='4px' color='blue.500' size='xl' />
         ) : (
           collection &&
-          (collection.items.length === 0 ? (
+          (collection.items.length < 1 ? (
             <Heading as='h2'>There are not any files</Heading>
           ) : (
             <MasonryLayout collection={collection} />

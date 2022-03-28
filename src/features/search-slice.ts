@@ -1,18 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { BASE_URL } from '@/helpers/constants'
 
-type search = {
-  data: any
-}
+type search = { collection: { items: [{ data: []; links: [] }] } }
 
-const initialState: search = {
-  data: [],
-}
+type params = { term: string; isImagesCheck: boolean; isAudioCheck: boolean }
 
-export const counterSlice = createSlice({
-  name: 'search',
-  initialState,
-  reducers: {},
+export const searchApi = createApi({
+  reducerPath: 'searchApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: BASE_URL,
+  }),
+  endpoints: builder => ({
+    fetchFiles: builder.query<search, params>({
+      query: ({ term, isImagesCheck, isAudioCheck }) =>
+        `/search?q=${term}${isImagesCheck ? '&media_type=image' : ''}${
+          isAudioCheck ? '&media_type=audio' : ''
+        }`,
+    }),
+  }),
 })
 
-// export const {} = counterSlice.actions
-export default counterSlice.reducer
+export const { useFetchFilesQuery } = searchApi
